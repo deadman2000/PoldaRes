@@ -1,9 +1,13 @@
 ﻿using System.IO.Compression;
 using System.Text;
 
-var file = File.OpenRead(@"D:\Projects\TranslateWeb\Polda\android\resource.res");
+Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+var enc = Encoding.GetEncoding(1250);
+
+//var file = File.OpenRead(@"D:\Projects\TranslateWeb\Polda\android\resource.res");
 //var file = File.OpenRead(@"D:\Projects\TranslateWeb\Polda\Polda\resource.res");
-var destPath = @"D:\Projects\TranslateWeb\Polda\extract\";
+var file = File.OpenRead(@"D:\Projects\TranslateWeb\Polda\Polda_5\resource.res");
+var destPath = @"D:\Projects\TranslateWeb\Polda\extract_5\";
 
 
 byte[] header = new byte[20];
@@ -56,7 +60,7 @@ for (int i = 0; i < files_count; i++)
 
     int end = str_offset;
     while (file_map[end] != 0) end++;
-    string path = Encoding.ASCII.GetString(file_map, str_offset, end - str_offset);
+    string path = enc.GetString(file_map, str_offset, end - str_offset);
 
     // file_type:
     // 0 - PRJ, SCN, SCC, SAV, META, TEXTDB.*
