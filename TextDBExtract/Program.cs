@@ -47,7 +47,7 @@ var files = Directory.GetFiles(dir);
 foreach (var path in files)
 {
     var name = Path.GetFileName(path);
-    if (name.StartsWith("TEXTDB"))
+    if (name.StartsWith("TEXTDB") && !name.EndsWith(".TXT"))
     {
         Console.WriteLine(path);
         ExtractText(path, Path.Combine(dir, name + ".TXT"));
